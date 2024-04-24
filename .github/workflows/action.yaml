@@ -1,0 +1,41 @@
+name: main
+on: push
+
+jobs:
+  read-iac-config:
+    runs-on: self-hosted
+    outputs:
+      iac: ${{ steps.set-iac.outputs.iac }}
+      
+    steps:
+     - name: Checkout to repository
+       uses: actions/checkout@v3
+        
+     
+     - name: Retrieve IAC Configuration values
+       id: set-iac
+       run: |
+        JSON=$(cat ./ioc.json)
+         # the following lines are only required for multi line json
+        JSON="${JSON//'%'/'%25'}"
+        JSON="${JSON//$'\n'/'%0A'}"
+        JSON="${JSON//$'\r'/'%0D'}"
+        echo "::set-output name=iac::${JSON}"
+        echo "${JSON}"
+        
+  job3:
+    runs-on: self-hosted
+    needs: read-iac-config
+    strategy:
+      matrix: ${{ fromJson(needs.read-iac-config.outputs.iac) }}
+    steps:
+    #- run: echo Run ${{ (matrix.customer) }}
+    #- run: echo Run ${{ (matrix.enabled) }}
+    
+    - name: print customer name and value if enabled 
+      if: ${{ matrix.enabled == true }} &&  ${{ matrix.deploy_template1 == true }}
+      run: |
+        echo Run ${{ (matrix.customer) }}
+        #$value= $(cat ./infra/"customername"/templates/resources.template.json
+ 
+    
