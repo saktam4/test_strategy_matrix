@@ -3,7 +3,7 @@ on: push
 
 jobs:
   read-iac-config:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     outputs:
       iac: ${{ steps.set-iac.outputs.iac }}
       
@@ -23,7 +23,7 @@ jobs:
         echo "::set-output name=iac::${JSON}"
         echo "${JSON}"
         
-  job:
+  job3:
     runs-on: ubuntu-latest
     needs: read-iac-config
     strategy:
