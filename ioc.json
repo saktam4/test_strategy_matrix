@@ -1,10 +1,15 @@
 [
-  {
-    "customer": "customer1",
-    "enabled": true
-  },
-  {
-    "customer": "customer2",
-    "enabled": true
-  }
-]
+    {
+      
+        "customer": "customer1",
+        "enabled": true
+      
+    },
+    {
+     
+        "customer": "customer2",
+        "enabled": true
+      
+    }
+  ]
+
