@@ -33,8 +33,8 @@ jobs:
       matrix: 
         #${{ insert }}: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
         include: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
-        exclude:
-          - ${{ fromJson(needs.read-customer-config.outputs.customers.enabled)}}: false
+        #exclude:
+         # - ${{ fromJson(needs.read-customer-config.outputs.customers.enabled)}}: false
     #if: ${{ fromJson(needs.read-customer-config.outputs.customers).enabled == 'true'}} 
     steps:
     
@@ -45,8 +45,8 @@ jobs:
           echo "customer=${CUSTOMER}" >> $GITHUB_OUTPUT
           echo "enabled=${ENABLED}" >> $GITHUB_OUTPUT
           
-      - run: echo Run ${{ (matrix.customer) }}
-      - run: echo Run ${{ (matrix.enabled) }} 
+      - run: echo Run ${{ (matrix) }}
+      #- run: echo Run ${{ (matrix.enabled) }} 
   
   deploy-content:
     if: ${{ needs.parse-customer-config.outputs.enabled == true}} 
