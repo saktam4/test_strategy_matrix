@@ -32,8 +32,8 @@ jobs:
     strategy:
       matrix: 
         customers: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
-          exclude:
-            - customers.enabled: false 
+        exclude:
+          - customers.enabled: false 
     #if: ${{ fromJson(needs.read-customer-config.outputs.customers).enabled == 'true'}} 
     steps:
     
