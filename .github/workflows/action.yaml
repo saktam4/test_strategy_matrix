@@ -34,7 +34,7 @@ jobs:
       - id: identify
         run: |
           export DATASOURCE="${{  matrix }}"
-          echo "datasource=${fromJson(DATASOURCE)}" >> $GITHUB_OUTPUT
+          echo "datasource=${(DATASOURCE)}" >> $GITHUB_OUTPUT
           
       - run: echo Run ${{ (matrix.customer) }}
       - run: echo Run ${{ (matrix.enabled) }} 
