@@ -33,17 +33,19 @@ jobs:
     env:
        JSON_DOC: ${{ toJSON(matrix)}} 
     steps:
-     
+    - id: identify
+      run: |
+        export datasource="${{ matrix }}"
       - run: echo Run ${{ (matrix.customer) }}
       - run: echo Run ${{ (matrix.enabled) }} 
   
   deploy-content:
-    if: ${{ (env.JSON_DOC.enabled) }} == 'true'
+    if: ${{ (needs.parse-customer-config.datasource.enabled) }} == 'true'
     runs-on: windows-latest
     needs: parse-customer-config
     
     steps:    
-      - run: echo Run ${{(env.JSON_DOC.customer)}}
+      - run: echo Run ${{(needs.parse-customer-config.datasource.customer)}}
         
  
     
