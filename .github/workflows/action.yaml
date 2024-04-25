@@ -30,9 +30,10 @@ jobs:
       customer: ${{ steps.identify.outputs.customer}}
       enabled: ${{ steps.identify.outputs.enabled}}
     strategy:
+      fail-fast: false
       matrix: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
-      exclude:
-        - fromJson(needs.read-customer-config.outputs.customers).enabled: false 
+        exclude:
+          - enabled: false 
     #if: ${{ fromJson(needs.read-customer-config.outputs.customers).enabled == 'true'}} 
     steps:
     
