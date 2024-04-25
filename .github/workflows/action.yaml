@@ -23,7 +23,7 @@ jobs:
         echo "::set-output name=customers::${JSON}"
         echo "${JSON}"
         
-   parse-customer-config:
+  parse-customer-config:
     runs-on: ubuntu-latest
     needs: read-customer-config
     outputs:
