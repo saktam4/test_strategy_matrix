@@ -31,8 +31,9 @@ jobs:
       enabled: ${{ steps.identify.outputs.enabled}}
     strategy:
       matrix: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
-    steps:
     if: ${{ matrix.enabled == true}} 
+    steps:
+    
       - id: identify
         run: |
           export CUSTOMER="${{ matrix.customer }}"
