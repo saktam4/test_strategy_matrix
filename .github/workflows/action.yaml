@@ -45,7 +45,7 @@ jobs:
           echo "customer=${CUSTOMER}" >> $GITHUB_OUTPUT
           echo "enabled=${ENABLED}" >> $GITHUB_OUTPUT
           
-      - run: echo Run ${{ fromJson(matrix) }}
+      - run: echo Run ${{ toJSON(matrix) }}
       #- run: echo Run ${{ (matrix.enabled) }} 
   
   deploy-content:
