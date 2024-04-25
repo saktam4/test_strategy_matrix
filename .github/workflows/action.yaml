@@ -30,11 +30,15 @@ jobs:
       customer: ${{ steps.identify.outputs.customer}}
       enabled: ${{ steps.identify.outputs.enabled}}
     strategy:
-      matrix: 
-        ${{ insert }}: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
-        #include: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
+      matrix:  ${{ fromJson(needs.read-customer-config.outputs.customers) }}
+        
         exclude:
           - customer: customer1
+            enabled: true
+          
+        #${{ insert }}: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
+        #include: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
+        
     #if: ${{ fromJson(needs.read-customer-config.outputs.customers).enabled == 'true'}} 
     steps:
     
