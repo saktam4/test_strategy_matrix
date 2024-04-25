@@ -40,10 +40,10 @@ jobs:
   deploy-content:
     if: ${{(needs.process-customer.outputs.datasource)}}.enabled == 'true'
     runs-on: windows-latest
-    needs: process-customer
+    needs: parse-customer-config
     
     steps:    
-      - run: echo Run ${{(needs.process-customer.outputs.datasource)}}.customer
+      - run: echo Run ${{(needs.parse-customer-config.outputs.datasource)}}.customer
         
  
     
