@@ -43,7 +43,7 @@ jobs:
       - run: echo Run ${{ (matrix.enabled) }} 
   
   deploy-content:
-    if: ${{ needs.parse-customer-config.outputs.enabled }} == 'true'
+    if: ${{ needs.parse-customer-config.outputs.enabled == true}} 
     runs-on: windows-latest
     needs: parse-customer-config
     
