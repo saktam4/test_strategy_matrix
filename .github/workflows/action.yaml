@@ -32,7 +32,7 @@ jobs:
     strategy:
       matrix: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
     steps:
-      if: ${{ matrix.enabled == true}} 
+    if: ${{ matrix.enabled == true}} 
       - id: identify
         run: |
           export CUSTOMER="${{ matrix.customer }}"
