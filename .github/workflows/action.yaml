@@ -38,12 +38,12 @@ jobs:
       - run: echo Run ${{ (matrix.enabled) }} 
   
   deploy-content:
-    if: ${{ (needs.parse-customer-config.datasource.enabled) }} == 'true'
+    #if: ${{ needs.parse-customer-config.datasource.enabled }} == 'true'
     runs-on: windows-latest
     needs: parse-customer-config
     
     steps:    
-      - run: echo Run ${{(needs.parse-customer-config.datasource.customer)}}
+      - run: echo Run ${{(needs.parse-customer-config.datasource).customer}}
         
  
     
