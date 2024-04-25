@@ -45,7 +45,7 @@ jobs:
     needs: parse-customer-config
     
     steps:    
-      - run: echo Run "${{fromJson(needs.parse-customer-config.outputs.datasource)}}"
+      - run: echo Run "${{toJson(needs.parse-customer-config.outputs.datasource)}}"
       - run: echo Run ${{(needs.parse-customer-config.outputs.datasource)}}.customer
         
  
