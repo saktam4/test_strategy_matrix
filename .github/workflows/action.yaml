@@ -38,6 +38,10 @@ jobs:
     #if: ${{ fromJson(needs.read-customer-config.outputs.customers).enabled == 'true'}} 
     steps:
     
+     - name: "test"
+       if: ${{ matrix.enabled == 'true' }}
+       run: echo " ${{matrix.enabled}}"
+    
       - id: identify
         run: |
           export CUSTOMER="${{ matrix.customer }}"
@@ -45,7 +49,7 @@ jobs:
           echo "customer=${CUSTOMER}" >> $GITHUB_OUTPUT
           echo "enabled=${ENABLED}" >> $GITHUB_OUTPUT
           
-      - run: echo Run ${{ toJSON(matrix) }}
+      - run: echo Run ${{ matrix}}
       #- run: echo Run ${{ (matrix.enabled) }} 
   
   deploy-content:
