@@ -2,40 +2,40 @@ name: main
 on: push
 
 jobs:
-  read-iac-config:
+  read-customer-config:
     runs-on: ubuntu-latest
     outputs:
-      iac: ${{ steps.set-iac.outputs.iac }}
+      customers: ${{ steps.set-customers.outputs.customers }}
       
     steps:
      - name: Checkout to repository
        uses: actions/checkout@v3
         
      
-     - name: Retrieve IAC Configuration values
-       id: set-iac
+     - name: Retrieve customers Configuration values
+       id: set-customers
        run: |
         JSON=$(cat ./ioc.json)
          # the following lines are only required for multi line json
         JSON="${JSON//'%'/'%25'}"
         JSON="${JSON//$'\n'/'%0A'}"
         JSON="${JSON//$'\r'/'%0D'}"
-        echo "::set-output name=iac::${JSON}"
+        echo "::set-output name=customers::${JSON}"
         echo "${JSON}"
         
-  job3:
+   parse-customer-config:
     runs-on: ubuntu-latest
-    needs: read-iac-config
+    needs: read-customer-config
+    outputs:
+      datasource: ${{ steps.set-ds.outputs.datasource}
     strategy:
-      matrix: ${{ fromJson(needs.read-iac-config.outputs.iac) }}
+      matrix: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
+    env:
+       JSON_DOC: ${{ toJSON(matrix)}} 
     steps:
-    #- run: echo Run ${{ (matrix.customer) }}
-    #- run: echo Run ${{ (matrix.enabled) }}
-    
-    - name: print customer name and value if enabled 
-      if: ${{ matrix.enabled == true }} &&  ${{ matrix.deploy_template1 == true }}
-      run: |
-        echo Run ${{ (matrix.customer) }}
-        #$value= $(cat ./infra/"customername"/templates/resources.template.json
+     
+      - run: echo Run ${{ (matrix.customer) }}
+      - run: echo Run ${{ (matrix.enabled) }} 
+        
  
     

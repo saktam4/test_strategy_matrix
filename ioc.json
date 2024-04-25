@@ -2,24 +2,14 @@
   "include": [
     {
       
-        "customer": "Customer1",
-        "enabled": true,
-        "deploy_template1": true
+        "customer": "customer1",
+        "enabled": true
       
     },
     {
      
-        "customer": "Customer2",
-        "enabled": true,
-        "deploy_template1": true
-      
-    },
-    {
-    
-        "customer": "EntraID",
-        "enabled": true,
-        "create_groups": true,
-	"add_roles_to_groups": true
+        "customer": "customer2",
+        "enabled": false
       
     }
   ]
