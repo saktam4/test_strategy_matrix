@@ -33,8 +33,7 @@ jobs:
       matrix:
         ${{ insert }}: "${{ fromJson(needs.read-customer-config.outputs.customers) }}"
         exclude:
-          - include.customer: customer1
-            enabled: true
+          - { enabled: true }
           
         #${{ insert }}: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
         #include: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
