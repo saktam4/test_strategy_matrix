@@ -38,7 +38,7 @@ jobs:
       - run: echo Run ${{ (matrix.enabled) }} 
   
   deploy-content:
-    if: ${{(needs.process-customer.outputs.datasource.enabled)}} == 'true'
+    if: ${{(needs.parse-customer-config.outputs.datasource.enabled)}} == 'true'
     runs-on: windows-latest
     needs: parse-customer-config
     
