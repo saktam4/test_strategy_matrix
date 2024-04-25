@@ -31,7 +31,7 @@ jobs:
       enabled: ${{ steps.identify.outputs.enabled}}
     strategy:
       matrix: 
-        ${{ include }}: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
+        ${{ insert }}: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
         exclude:
           - matrix.customers.enabled: false 
     #if: ${{ fromJson(needs.read-customer-config.outputs.customers).enabled == 'true'}} 
