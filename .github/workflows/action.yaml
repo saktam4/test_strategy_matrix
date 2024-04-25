@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: read-customer-config
     outputs:
-      datasource: ${{ steps.set-identify.outputs.datasource}}
+      datasource: ${{ steps.identify.outputs.datasource}}
     strategy:
       matrix: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
     steps:
