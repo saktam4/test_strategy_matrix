@@ -30,7 +30,7 @@ jobs:
       customer: ${{ steps.identify.outputs.customer}}
       enabled: ${{ steps.identify.outputs.enabled}}
     strategy:
-      matrix: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
+      matrix: 
         customers: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
       exclude:
         - matrix.customers.enabled: false 
