@@ -38,7 +38,7 @@ jobs:
       - run: echo Run ${{ (matrix.enabled) }} 
   
   deploy-content:
-    if: "${{ env.JSON_DOC.enabled }}" == 'true'
+    if: ${{ (env.JSON_DOC.enabled) }} == 'true'
     runs-on: windows-latest
     needs: parse-customer-config
     
