@@ -38,9 +38,9 @@ jobs:
     #if: ${{ fromJson(needs.read-customer-config.outputs.customers).enabled == 'true'}} 
     steps:
     
-     - name: "test"
-       if: ${{ matrix.enabled == 'true' }}
-       run: echo " ${{matrix.enabled}}"
+      - name: "test"
+        if: ${{ matrix.enabled == 'true' }}
+        run: echo " ${{matrix.enabled}}"
     
       - id: identify
         run: |
