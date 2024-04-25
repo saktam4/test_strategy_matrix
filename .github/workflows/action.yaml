@@ -32,7 +32,7 @@ jobs:
     strategy:
       matrix: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
         exclude:
-          - enabled: false 
+          - fromJson(needs.read-customer-config.outputs.customers).enabled: false 
     #if: ${{ fromJson(needs.read-customer-config.outputs.customers).enabled == 'true'}} 
     steps:
     
