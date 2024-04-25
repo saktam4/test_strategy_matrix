@@ -27,26 +27,29 @@ jobs:
     runs-on: ubuntu-latest
     needs: read-customer-config
     outputs:
-      datasource: ${{ steps.identify.outputs.datasource}}
+      customer: ${{ steps.identify.outputs.customer}}
+      enabled: ${{ steps.identify.outputs.enabled}}
     strategy:
       matrix: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
     steps:
       - id: identify
         run: |
-          export DATASOURCE="${{ matrix.customer }}"
-          echo "datasource=${DATASOURCE}" >> $GITHUB_OUTPUT
+          export CUSTOMER="${{ matrix.customer }}"
+          export ENABLED="${{ matrix.enabled }}"
+          echo "customer=${CUSTOMER}" >> $GITHUB_OUTPUT
+          echo "enabled=${ENABLED}" >> $GITHUB_OUTPUT
           
       - run: echo Run ${{ (matrix.customer) }}
       - run: echo Run ${{ (matrix.enabled) }} 
   
   deploy-content:
-    #if: ${{ needs.parse-customer-config.datasource.enabled }} == 'true'
+    if: ${{ needs.parse-customer-config.outputs.enabled }} == 'true'
     runs-on: windows-latest
     needs: parse-customer-config
     
     steps:    
-      - run: echo Run "${{toJson(needs.parse-customer-config.outputs.datasource)}}"
-      - run: echo Run ${{(needs.parse-customer-config.outputs.datasource)}}.customer
+      - run: echo Run "${{(needs.parse-customer-config.outputs.enabled)}}"
+      - run: echo Run ${{(needs.parse-customer-config.outputs.customer)}}
         
  
     
