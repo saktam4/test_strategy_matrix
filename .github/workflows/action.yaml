@@ -32,8 +32,8 @@ jobs:
       matrix: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
     steps:
       - id: identify
-          run: |
-            export datasource="${{ matrix }}"
+        run: |
+          export datasource="${{ matrix }}"
       - run: echo Run ${{ (matrix.customer) }}
       - run: echo Run ${{ (matrix.enabled) }} 
   
