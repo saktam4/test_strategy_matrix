@@ -34,7 +34,7 @@ jobs:
         #${{ insert }}: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
         include: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
         exclude:
-          - enabled: true
+          - "enabled": true
     #if: ${{ fromJson(needs.read-customer-config.outputs.customers).enabled == 'true'}} 
     steps:
     
