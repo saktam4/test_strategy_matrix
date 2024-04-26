@@ -42,8 +42,11 @@ jobs:
     steps:
     
       - name: "test"
-       
         run: echo ${{matrix.customers}}
+      
+      - name: Exit GITHUB Action 
+        if: ${{ matrix.customers.enabled == '' }}
+        run: exit 1
     
       - id: identify
         run: |
