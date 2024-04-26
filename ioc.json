@@ -5,13 +5,13 @@
     {
       
         "customer": "customer1",
-        "enabled": true
+        "enabled": false
       
     },
     {
      
         "customer": "customer2",
-        "enabled": true
+        "enabled": false
       
     }
   ]
