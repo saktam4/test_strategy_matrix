@@ -39,8 +39,6 @@ jobs:
         #${{ insert }}: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
         #include: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
         
-    if: ${{toJson(fromJson(needs.read-customer-config.outputs.customers.customers)) != '[]' && needs.read-customer-config.outputs.customers.customers != ''}} 
-    
     steps:
     
       - name: "test"
