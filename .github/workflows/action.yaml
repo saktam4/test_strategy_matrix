@@ -40,23 +40,22 @@ jobs:
         #include: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
         
     steps:
-    
-      - name: "test"
-        run: echo ${{matrix.customers}}
+    - name: "test"
+      run: echo ${{matrix.customers}}
       
-      - name: Exit GITHUB Action 
-        if: ${{ matrix.customers.enabled == '' }}
-        run: exit 1
+    - name: Exit GITHUB Action 
+      if: ${{ matrix.customers.enabled == '' }}
+      run: exit 1
     
-      - id: identify
-        run: |
-          export CUSTOMER="${{ matrix.customers.customer }}"
-          export ENABLED="${{ matrix.customers.enabled }}"
-          echo "customer=${CUSTOMER}" >> $GITHUB_OUTPUT
-          echo "enabled=${ENABLED}" >> $GITHUB_OUTPUT
+    - id: identify
+      run: |
+       export CUSTOMER="${{ matrix.customers.customer }}"
+       export ENABLED="${{ matrix.customers.enabled }}"
+       echo "customer=${CUSTOMER}" >> $GITHUB_OUTPUT
+       echo "enabled=${ENABLED}" >> $GITHUB_OUTPUT
           
-      - run: echo Run ${{ matrix}}
-      - name: Login to Azure (Attempt 1)
+    - run: echo Run ${{ matrix}}
+    - name: Login to Azure (Attempt 1)
       continue-on-error: true
       id: login1
       uses: azure/login@v1
@@ -103,6 +102,8 @@ jobs:
         azPSVersion: 'latest'
         inlineScript: |
           ${{ github.workspace }}//.github/workflows/azure-sentinel-deploy-72d05441-b309-40b0-8d41-746df9859ed1_test.ps1
+      
+      
   
 
  
