@@ -1,5 +1,23 @@
-name: main
-on: push
+name: Deploy Content to saktam4-sentinel-WS [72d05441-b309-40b0-8d41-746df9859ed1]
+# Note: This workflow will deploy everything in the root directory.
+# To deploy content only from a specific path (for example SentinelContent):
+#   1. Add the target path to the "paths" property like such
+#    paths:
+#    - 'SentinelContent/**'
+#    - '!.github/workflows/**'
+#    - '.github/workflows/sentinel-deploy-72d05441-b309-40b0-8d41-746df9859ed1.yml'
+#   2. Append the path to the directory environment variable below
+#       directory: '${{ github.workspace }}/SentinelContent'
+
+on: 
+  push:
+    branches: [ develop ]
+    paths:
+      - '**'
+      - '!global/sentinel/multi-source/**'
+      - '!global/sentinel/crowdstrike/**'
+      - '!.github/workflows/**'  # this filter prevents other workflow changes from triggering this workflow
+      - '.github/workflows/sentinel-deploy-72d05441-b309-40b0-8d41-746df9859ed1.yml'
 
 jobs:
   read-customer-config:
@@ -29,6 +47,20 @@ jobs:
     outputs:
       customer: ${{ steps.identify.outputs.customer}}
       enabled: ${{ steps.identify.outputs.enabled}}
+    env:
+      resourceGroupName: 'demo-np-test1-rg'
+      workspaceName: 'saktam4-sentinel-WS'
+      workspaceId: 'a5806c7e-18f5-4122-9260-5201e982baad'
+      directory: '${{ github.workspace }}'
+      cloudEnv: 'AzureCloud'
+      creds: ${{ secrets.AZURE_SENTINEL_CREDENTIALS_72d05441b30940b08d41746df9859ed1 }}
+      contentTypes: 'AnalyticsRule,AutomationRule,HuntingQuery,Parser,Playbook,Workbook'
+      branch: 'develop'
+      sourceControlId: '72d05441-b309-40b0-8d41-746df9859ed1'
+      rootDirectory: '${{ github.workspace }}'
+      githubAuthToken: ${{ secrets.GITHUB_TOKEN }}
+      smartDeployment: 'false'
+      customer: 'customer2'
     strategy:
       matrix:
         ${{ insert }}: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
