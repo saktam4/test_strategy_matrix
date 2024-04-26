@@ -46,7 +46,7 @@ jobs:
       
       - name: Exit GITHUB Action 
         if: ${{ matrix.customers.enabled == '' }}
-        run: exit 1
+        run: exit o
     
       - id: identify
         run: |
