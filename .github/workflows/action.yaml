@@ -43,13 +43,13 @@ jobs:
     steps:
     
       - name: "test"
-        if: ${{ matrix.enabled == 'true' }}
+        if: ${{ matrix.customers.enabled == 'true' }}
         run: echo " ${{matrix.enabled}}"
     
       - id: identify
         run: |
-          export CUSTOMER="${{ matrix.customer }}"
-          export ENABLED="${{ matrix.enabled }}"
+          export CUSTOMER="${{ matrix.customers.customer }}"
+          export ENABLED="${{ matrix.customers.enabled }}"
           echo "customer=${CUSTOMER}" >> $GITHUB_OUTPUT
           echo "enabled=${ENABLED}" >> $GITHUB_OUTPUT
           
