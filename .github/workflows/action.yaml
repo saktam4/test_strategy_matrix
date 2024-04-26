@@ -43,8 +43,8 @@ jobs:
     steps:
     
       - name: "test"
-        if: ${{ matrix.customers.enabled == 'true' }}
-        run: echo " ${{matrix.enabled}}"
+       
+        run: echo " ${{matrix.customers}}"
     
       - id: identify
         run: |
