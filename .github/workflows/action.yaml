@@ -39,12 +39,12 @@ jobs:
         #${{ insert }}: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
         #include: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
         
-    #if: ${{ fromJson(needs.read-customer-config.outputs.customers).enabled == 'true'}} 
+    if: ${{ fromJson(needs.read-customer-config.outputs.customers) != []}} 
     steps:
     
       - name: "test"
        
-        run: echo " ${{matrix.customers}}"
+        run: echo ${{matrix.customers}}
     
       - id: identify
         run: |
