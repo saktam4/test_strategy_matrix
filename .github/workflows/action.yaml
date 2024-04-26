@@ -83,8 +83,9 @@ jobs:
       run: |
        export CUSTOMER="${{ matrix.customers.customer }}"
        export ENABLED="${{ matrix.customers.enabled }}"
-       echo "customer=${CUSTOMER}" >> $GITHUB_OUTPUT
-       echo "enabled=${ENABLED}" >> $GITHUB_OUTPUT
+       echo "customer=${CUSTOMER}" >> $GITHUB_ENV
+       echo "enabled=${ENABLED}" >> $GITHUB_ENV
+       
           
     - run: echo Run ${{ matrix}}
     - name: Login to Azure (Attempt 1)
