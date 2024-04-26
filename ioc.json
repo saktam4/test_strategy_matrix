@@ -11,7 +11,7 @@
     {
      
         "customer": "customer2",
-        "enabled": false
+        "enabled": true
       
     }
   ]
