@@ -39,7 +39,7 @@ jobs:
         #${{ insert }}: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
         #include: ${{ fromJson(needs.read-customer-config.outputs.customers) }}
         
-    if: ${{needs.read-customer-config.outputs.customers != ""}} 
+    if: ${{matrix.customers != ""}} 
     steps:
     
       - name: "test"
