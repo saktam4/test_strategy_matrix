@@ -1,5 +1,5 @@
-{
-  "include": [
+[
+  
     {
       
         "customer": "customer1",
@@ -11,6 +11,7 @@
         "customer": "customer2",
         "enabled": true
       
-    },
-  ]
-}
+    }
+  
+]
+]
